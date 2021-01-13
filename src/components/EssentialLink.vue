@@ -1,6 +1,7 @@
 <template>
   <q-item
     clickable
+    v-ripple
     class="text-grey-4"
     :to="to"
   >

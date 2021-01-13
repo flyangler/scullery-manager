@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -15,7 +15,7 @@
           Scullery Manager
         </q-toolbar-title>
 
-        <!-- <div>{{ $q.version }}</div> -->
+        <div class="q-g">Quasar -v:{{ $q.version }}  |  LoggedIn: {{loggedIn}}</div>
       </q-toolbar>
     </q-header>
 
@@ -25,33 +25,43 @@
       bordered
       content-class="bg-primary"
     >
+      <q-separator class="" />
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-        <div class="column items-center q-mb-md">
-          <q-avatar class="q-mg-md" size="250px">
-            <img class="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnfeF0Z5XSAwfpvN3w2WSj_iIOnStlE1bpQ&usqp=CAU">
-          </q-avatar>
-        </div>
-        <div class="row items-center justify-center  q-mb-md">
-          <strong class="text-h6 text-grey-4">Welcome:</strong>
-          <q-chip>
-            <q-avatar>
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+        <q-item-label header class="text-grey-8">
+          <div class="column items-center q-mb-md">
+            <q-avatar class="q-mg-md" style="width: 250px; height: 250px; border-radius: 100%;">
+              <img class="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBnfeF0Z5XSAwfpvN3w2WSj_iIOnStlE1bpQ&usqp=CAU">
             </q-avatar>
-              John
-          </q-chip>
-        </div>
+          </div>
         </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :to="link.to"
-          :key="link.title"
-          v-bind="link"
-        />
       </q-list>
+      <q-separator class="" />
+
+      <EssentialLink
+        v-for="link in essentialLinks"
+        :to="link.to"
+        :key="link.title"
+        v-bind="link"
+      />
+
+      <q-separator />
+
+      <q-item
+        clickable
+        @click="logoutUser()"
+        class="row self-end q-mt-xl text-grey-4"
+      >
+        <q-item-section
+          avatar
+          size="md"
+        >
+          <q-icon name="directions_run" />
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>Sign out</q-item-label>
+        </q-item-section>
+      </q-item>
     </q-drawer>
 
     <q-page-container>
@@ -63,6 +73,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
@@ -89,28 +100,41 @@ const linksData = [
   {
     title: 'Sync',
     icon: 'sync',
-    to: 'sync'
+    to: '/sync'
   },
   {
     title: 'Settings',
     icon: 'settings',
     to: '/settings'
-  },
-  {
-    title: 'Sign Out',
-    icon: 'self_improvement',
-    to: '/auth'
   }
 ]
 
 export default {
   name: 'MainLayout',
-  components: { EssentialLink },
+  components: {
+    EssentialLink
+  },
   data () {
     return {
       leftDrawerOpen: false,
       essentialLinks: linksData
     }
+  },
+
+  computed: {
+    ...mapState('auth', ['loggedIn'])
+  },
+
+  methods: {
+    ...mapActions('auth', ['logoutUser'])
   }
 }
 </script>
+<style lang="scss">
+@media screen and (min-width: 768px) {
+  .q-footer {
+    display: none;
+  }
+}
+
+</style>

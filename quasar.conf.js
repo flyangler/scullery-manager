@@ -19,7 +19,8 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
-
+      'firebase',
+      'router-auth'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -95,12 +96,27 @@ module.exports = function (/* ctx */) {
       // you can manually specify Quasar components/directives to be available everywhere:
       //
       components: [
-        'QLayout'
+        'QDialog',
+        'QLayout',
+        'QRouteTab',
+        'QTabs',
+        'QTab',
+
+        'QList',
+        'QItem',
+        'QItemSection',
+        'QItemLabel',
+       ],
+      directives: [
       ],
-      directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Notify',
+        'Dialog',
+        'Loading',
+        'LocalStorage'
+      ]
     },
 
     // animations: 'all', // --- includes all animations

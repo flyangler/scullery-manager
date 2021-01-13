@@ -1,0 +1,4 @@
+{
+    "gitlens.blame.highlight.enabled": false,
+    "vetur.validation.templateProps": true
+}

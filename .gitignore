@@ -31,3 +31,9 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# firebase api keys & Config (private)
+/src/boot/firebase.js
+
+# Other
+src/statics/john_1-21_workspace.code-workspace
