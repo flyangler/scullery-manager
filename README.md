@@ -9,7 +9,7 @@ npm install
 
 ## Paste your own firebase config params in boot/firebase.js
 ```bash
-open boot/firebase.js in your editor and paste your config object
+open boot/firebase.js from your editor, paste your config object, and save changes
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
