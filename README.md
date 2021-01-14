@@ -7,6 +7,11 @@ track and record maintenance on your most important things, as they move between
 npm install
 ```
 
+## Paste your own firebase config params in boot/firebase.js
+```bash
+open boot/firebase.js in your editor and paste your config object
+```
+
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
 quasar dev
